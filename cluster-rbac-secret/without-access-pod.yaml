@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: clus-default-pod
+  namespace: nisingh
+spec:
+  containers:
+    - name: clus-container-2
+      image: nginx
+      volumeMounts:
+        - name: secret-volume
+          mountPath: /etc/secret-volume
+  volumes:
+    - name: secret-volume
+      secret:
+        secretName: clus-secret
+# ARN: arn:aws:secretsmanager:us-west-2:330787392602:secret:dummy-secret-3YH8Kt
