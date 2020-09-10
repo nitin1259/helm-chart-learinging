@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: nitin
+  labels:
+    run: webapp
+  name: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: webapp
+  template:
+    metadata:
+      annotations:
+        secrets.k8s.aws/sidecarInjectorWebhook: enabled
+        secrets.k8s.aws/secret-arn: arn:aws:secretsmanager:us-west-2:972956032059:secret:test-secret-YVUgzu
+      labels:
+        run: webapp
+    spec:
+      # serviceAccountName: webserver-service-account
+      containers:
+        - image: busybox:1.28
+          name: webapp
+          command: ["sh", "-c", "echo $(cat /tmp/secret) && sleep 3600"]
