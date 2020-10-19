@@ -1,5 +1,7 @@
 # helm-chart-learinging
 
+RBAC of secrets for pods access.
+
 POC for accessing the external secrets in AWS secret manager with Kubernetes and below are steps and finding-
 
 https://github.com/aws-samples/aws-secret-sidecar-injector
